@@ -1,0 +1,16 @@
+package io.astefanich.airline.common.events;
+
+import io.astefanich.airline.common.domain.BookingNumber;
+import io.astefanich.airline.common.domain.PassengerName;
+import lombok.Getter;
+
+@Getter
+public class CustomerNotRegisteredEvent extends AbstractBookingEvent {
+
+  private PassengerName passengerName;
+
+  public CustomerNotRegisteredEvent(BookingNumber bookingNumber, PassengerName passengerName) {
+    super(bookingNumber);
+    this.passengerName = passengerName;
+  }
+}
