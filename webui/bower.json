@@ -1,0 +1,11 @@
+{
+  "name": "event-driven-airline",
+  "homepage": "https://github.com/astefanich/event-driven-airline",
+  "authors": [
+    "Andrew Stefanich <andrewstefanich@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true
+}
