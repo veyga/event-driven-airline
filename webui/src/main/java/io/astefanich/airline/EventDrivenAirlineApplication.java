@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AxonAirlineApplication {
+public class EventDrivenAirlineApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(AxonAirlineApplication.class, args);
+    SpringApplication.run(EventDrivenAirlineApplication.class, args);
   }
 
 }
