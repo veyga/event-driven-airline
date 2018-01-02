@@ -4,6 +4,7 @@ import io.astefanich.airline.common.commands.AddFlightToFlightScheduleCommand;
 import io.astefanich.airline.common.domain.FlightNumber;
 import io.astefanich.airline.common.domain.Schedule;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.callbacks.LoggingCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -53,7 +54,8 @@ public class FlightLoader implements ApplicationListener<ContextRefreshedEvent> 
       Date flightDate = java.sql.Date.valueOf(LocalDate.of(Integer.parseInt(dateTokens[0]), Integer
               .parseInt(dateTokens[1]), Integer.parseInt(dateTokens[2])));
       Schedule schedule = new Schedule(tokens[originI], tokens[destinationI], flightDate);
-      gateway.send(new AddFlightToFlightScheduleCommand(flightNumber, schedule, Integer.parseInt(tokens[capacityI])));
+      gateway.send(new AddFlightToFlightScheduleCommand(flightNumber, schedule, Integer.parseInt
+              (tokens[capacityI])), LoggingCallback.INSTANCE);
     }
   }
 }

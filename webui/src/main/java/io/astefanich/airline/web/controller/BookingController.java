@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.CompletableFuture;
-
 @Slf4j
 @RestController
 public class BookingController {
@@ -26,13 +24,14 @@ public class BookingController {
   }
 
   @PostMapping("/book")
-  public CompletableFuture<BookingNumber> bookTickets(@RequestBody BookTicketRequest request) {
+  public BookingNumber bookTickets(@RequestBody BookTicketRequest request) {
     PassengerName passenger = new PassengerName(request.getPassengerFirstName(), request.getPassengerLastName());
     FlightNumber flightNumber = new FlightNumber(request.getFlightNumber());
     BookingNumber bookingNumber = new BookingNumber();
 
     CreateBookingCommand command = new CreateBookingCommand(bookingNumber, flightNumber, passenger);
-    return gateway.send(command);
+    gateway.send(command);
+    return bookingNumber;
 
   }
 }

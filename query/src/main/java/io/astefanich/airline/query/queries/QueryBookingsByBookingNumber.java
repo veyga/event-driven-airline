@@ -1,14 +1,16 @@
 package io.astefanich.airline.query.queries;
 
+import io.astefanich.airline.common.domain.BookingNumber;
+
 public class QueryBookingsByBookingNumber {
 
-  private String bookingNumber;
+  private BookingNumber bookingNumber;
 
-  public QueryBookingsByBookingNumber(String bookingNumber) {
+  public QueryBookingsByBookingNumber(BookingNumber bookingNumber) {
     this.bookingNumber = bookingNumber;
   }
 
-  public String number() {
+  public BookingNumber getBookingNumber() {
     return bookingNumber;
   }
 }

@@ -36,7 +36,7 @@ public class CustomerCommandHandler {
   @CommandHandler
   public void handle(AddBookingToCustomerHistoryCommand command) {
     try {
-      Aggregate<Customer> passenger = customerRepository.load(command.getPassengerName().fullname());
+      Aggregate<Customer> passenger = customerRepository.load(command.getPassengerName().getFullName());
       passenger.execute(aggregateRoot -> {
         aggregateRoot.addBookingToHistory(command.getBookingNumber());
       });

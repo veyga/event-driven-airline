@@ -9,6 +9,11 @@ import io.astefanich.airline.command.aggregate.flight.FlightCommandHandler;
 import io.astefanich.airline.command.saga.BookingManagerSaga;
 import org.axonframework.config.SagaConfiguration;
 import org.axonframework.eventhandling.EventBus;
+import org.axonframework.messaging.interceptors.BeanValidationInterceptor;
+import org.axonframework.queryhandling.DefaultQueryGateway;
+import org.axonframework.queryhandling.QueryBus;
+import org.axonframework.queryhandling.QueryGateway;
+import org.axonframework.queryhandling.SimpleQueryBus;
 import org.axonframework.spring.config.AxonConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,5 +46,20 @@ public class AxonConfig {
   @Bean
   public SagaConfiguration bookingManagerSagaConfiguration() {
     return SagaConfiguration.subscribingSagaManager(BookingManagerSaga.class);
+  }
+
+  @Bean
+  public QueryGateway queryGateway() {
+    return new DefaultQueryGateway(queryBus(), beanValidationInterceptor());
+  }
+
+  @Bean
+  public QueryBus queryBus() {
+    return new SimpleQueryBus();
+  }
+
+  @Bean
+  public BeanValidationInterceptor beanValidationInterceptor() {
+    return new BeanValidationInterceptor();
   }
 }

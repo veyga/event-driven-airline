@@ -34,7 +34,7 @@ public class BookingCommandHandler {
 
   @CommandHandler
   public void handle(MarkBookingConfirmedCommand command) throws Exception {
-    Aggregate<Booking> booking = bookingRepository.load(command.getBookingNumber().identifier());
+    Aggregate<Booking> booking = bookingRepository.load(command.getBookingNumber().getIdentifier());
     booking.execute(aggregate -> {
       aggregate.markBookingConfirmed();
     });
@@ -42,7 +42,7 @@ public class BookingCommandHandler {
 
   @CommandHandler
   public void handle(MarkBookingRejectedCommand command) throws Exception {
-    Aggregate<Booking> booking = bookingRepository.load(command.getBookingNumber().identifier());
+    Aggregate<Booking> booking = bookingRepository.load(command.getBookingNumber().getIdentifier());
     booking.execute(aggregate -> {
       aggregate.markBookingRejected();
     });

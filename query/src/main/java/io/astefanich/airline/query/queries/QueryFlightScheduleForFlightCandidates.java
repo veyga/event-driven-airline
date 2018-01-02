@@ -1,15 +1,12 @@
 package io.astefanich.airline.query.queries;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class QueryFlightScheduleForFlightCandidates {
 
   private String origin;
 
   private String destination;
-
-  private String flightDate;
-
 
 }

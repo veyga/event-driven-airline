@@ -25,9 +25,9 @@ public class BookingEventListener {
   @EventHandler
   public void on(BookingCreatedEvent event) {
     BookingRecord record = new BookingRecord();
-    record.setBookingNumber(event.getBookingNumber().identifier());
-    record.setFlightNumber(event.getFlightNumber().identifier());
-    record.setPassengerFullName(event.getPassengerName().fullname());
+    record.setBookingNumber(event.getBookingNumber().getIdentifier());
+    record.setFlightNumber(event.getFlightNumber().getIdentifier());
+    record.setPassengerFullName(event.getPassengerName().getFullName());
     record.setBookingDate(LocalDate.now().toString());
     record.setBookingStatus(BookingStatus.RECEIVED.toString());
     repository.save(record);
@@ -35,14 +35,14 @@ public class BookingEventListener {
 
   @EventHandler
   public void on(BookingConfirmedEvent event) {
-    BookingRecord record = repository.findByBookingNumber(event.getBookingNumber().identifier());
+    BookingRecord record = repository.findByBookingNumber(event.getBookingNumber().getIdentifier());
     record.setBookingStatus(BookingStatus.CONFIRMED.toString());
     repository.save(record);
   }
 
   @EventHandler
   public void on(BookingRejectedEvent event) {
-    BookingRecord record = repository.findByBookingNumber(event.getBookingNumber().identifier());
+    BookingRecord record = repository.findByBookingNumber(event.getBookingNumber().getIdentifier());
     record.setBookingStatus(BookingStatus.REJECTED.toString());
     repository.save(record);
   }

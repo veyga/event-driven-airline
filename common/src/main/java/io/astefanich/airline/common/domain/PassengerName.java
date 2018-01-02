@@ -1,5 +1,6 @@
 package io.astefanich.airline.common.domain;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class PassengerName implements Serializable {
     this.lastName = lastName.toUpperCase();
   }
 
-  public String fullname() {
+  public String getFullName() {
     return String.format("%s,%s", lastName, firstName);
   }
 
@@ -30,6 +31,6 @@ public class PassengerName implements Serializable {
 
   @Override
   public String toString() {
-    return fullname();
+    return getFullName();
   }
 }

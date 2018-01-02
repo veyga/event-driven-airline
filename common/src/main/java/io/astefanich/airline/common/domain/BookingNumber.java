@@ -18,7 +18,7 @@ public class BookingNumber implements Serializable {
     this.identifier = identifier;
   }
 
-  public String identifier() {
+  public String getIdentifier() {
     return identifier;
   }
 

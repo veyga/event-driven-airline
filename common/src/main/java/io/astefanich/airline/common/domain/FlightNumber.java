@@ -19,13 +19,8 @@ public class FlightNumber implements Serializable {
   }
 
 
-  public String identifier() {
+  public String getIdentifier() {
     return identifier;
-  }
-
-  @Override
-  public int hashCode() {
-    return identifier.hashCode();
   }
 
   @Override

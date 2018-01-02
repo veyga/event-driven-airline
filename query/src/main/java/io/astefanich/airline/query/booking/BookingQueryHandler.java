@@ -1,9 +1,9 @@
 package io.astefanich.airline.query.booking;
 
-import io.astefanich.airline.common.domain.BookingNumber;
 import io.astefanich.airline.query.queries.QueryBookingsByBookingNumber;
 import io.astefanich.airline.query.queries.QueryBookingsByFlightNumber;
 import io.astefanich.airline.query.queries.QueryBookingsByPassengerName;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class BookingQueryHandler {
 
   private BookingRecordRepository repository;
@@ -21,18 +22,20 @@ public class BookingQueryHandler {
   }
 
   @QueryHandler
-  public BookingNumber handle(QueryBookingsByBookingNumber query) {
-    return null;
+  public BookingRecord handle(QueryBookingsByBookingNumber query) {
+    log.info("booking query handler, queryingbookinsbybookingnumber");
+    return repository.findByBookingNumber(query.getBookingNumber().getIdentifier());
   }
 
   @QueryHandler
-  public List<BookingNumber> handle(QueryBookingsByFlightNumber query) {
-    return null;
-
+  public List<BookingRecord> handle(QueryBookingsByFlightNumber query) {
+    log.info("booking query handler. queryingbookingsbyflightnumber");
+    return repository.findByFlightNumber(query.getFlightNumber().getIdentifier());
   }
 
   @QueryHandler
   public List<BookingRecord> handle(QueryBookingsByPassengerName query) {
-    return null;
+    log.info("booking query handler. queryingbookingsbyflightnumber");
+    return repository.findByPassengerFullName(query.getPassengerName().getFullName());
   }
 }

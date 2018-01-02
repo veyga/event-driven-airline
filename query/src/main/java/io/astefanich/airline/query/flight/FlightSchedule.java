@@ -4,13 +4,14 @@ import java.util.List;
 
 public class FlightSchedule {
 
-  private List<FlightEntry> flightEntries;
+  private List<FlightEntry> flights;
 
-  public FlightSchedule(List<FlightEntry> flightEntries) {
-    this.flightEntries = flightEntries;
+  public FlightSchedule(List<FlightEntry> flights) {
+    this.flights = flights;
   }
 
-  public List<FlightEntry> flights() {
-    return flightEntries;
+  public List<FlightEntry> getFlights() {
+    return flights;
   }
+
 }

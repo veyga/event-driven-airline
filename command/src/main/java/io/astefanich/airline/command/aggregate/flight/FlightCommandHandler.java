@@ -35,7 +35,7 @@ public class FlightCommandHandler {
   @CommandHandler
   public void handle(AddPassengerToFlightCommand command) {
     try {
-      Aggregate<Flight> flight = flightRepository.load(command.getFlightNumber().identifier());
+      Aggregate<Flight> flight = flightRepository.load(command.getFlightNumber().getIdentifier());
       flight.execute(aggregateRoot -> {
         aggregateRoot.addPassengerToManifest(command.getBookingNumber(), command.getPassenger());
       });

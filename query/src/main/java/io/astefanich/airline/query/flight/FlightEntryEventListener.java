@@ -22,7 +22,7 @@ public class FlightEntryEventListener {
   @EventHandler
   public void handle(FlightAddedToFlightScheduleEvent event) {
     FlightEntry entry = new FlightEntry();
-    entry.setFlightNumber(event.getFlightNumber().identifier());
+    entry.setFlightNumber(event.getFlightNumber().getIdentifier());
     Schedule schedule = event.getSchedule();
     entry.setOrigin(schedule.getOrigin());
     entry.setDestination(schedule.getDestination());
@@ -33,8 +33,8 @@ public class FlightEntryEventListener {
 
   @EventHandler
   public void on(BookingConfirmedEvent event) {
-    String flightNumber = event.getFlightNumber().identifier();
-    FlightEntry entry = repository.findByFlightNumber(event.getFlightNumber().identifier());
+    String flightNumber = event.getFlightNumber().getIdentifier();
+    FlightEntry entry = repository.findByFlightNumber(event.getFlightNumber().getIdentifier());
     int currentAvailability = Integer.parseInt(entry.getAvailableCapacity());
     entry.setAvailableCapacity(Integer.valueOf(--currentAvailability).toString());
     repository.save(entry);

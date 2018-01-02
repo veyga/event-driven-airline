@@ -10,7 +10,7 @@ public class QueryBookingsByPassengerName {
     this.passengerName = passengerName;
   }
 
-  public PassengerName name(){
+  public PassengerName getPassengerName(){
     return passengerName;
   }
 }

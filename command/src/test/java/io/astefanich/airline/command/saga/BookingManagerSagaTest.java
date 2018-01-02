@@ -1,7 +1,6 @@
 package io.astefanich.airline.command.saga;
 
 import io.astefanich.airline.common.commands.AddBookingToCustomerHistoryCommand;
-import io.astefanich.airline.common.commands.AddPassengerToFlightCommand;
 import io.astefanich.airline.common.commands.MarkBookingConfirmedCommand;
 import io.astefanich.airline.common.domain.BookingNumber;
 import io.astefanich.airline.common.domain.FlightNumber;
@@ -38,8 +37,8 @@ public class BookingManagerSagaTest {
 
   @Test
   public void testBookingCreated() throws Exception {
-    fixture.givenAggregate(bookingNumber.identifier()).published()
-            .whenAggregate(bookingNumber.identifier()).publishes(new BookingCreatedEvent(bookingNumber,
+    fixture.givenAggregate(bookingNumber.getIdentifier()).published()
+            .whenAggregate(bookingNumber.getIdentifier()).publishes(new BookingCreatedEvent(bookingNumber,
             flightNumber, passengerName)).expectActiveSagas(1)
             .expectDispatchedCommands(new AddBookingToCustomerHistoryCommand(bookingNumber,
                     flightNumber, passengerName));
@@ -47,9 +46,9 @@ public class BookingManagerSagaTest {
 
   @Test
   public void testBookingAddedToCustomerHistory() throws Exception {
-    fixture.givenAggregate(bookingNumber.identifier()).published()
-            .andThenAggregate(flightNumber.identifier()).published(new PassengerAddedToFlightEvent
-            (bookingNumber, flightNumber, passengerName)).whenAggregate(passengerName.fullname())
+    fixture.givenAggregate(bookingNumber.getIdentifier()).published()
+            .andThenAggregate(flightNumber.getIdentifier()).published(new PassengerAddedToFlightEvent
+            (bookingNumber, flightNumber, passengerName)).whenAggregate(passengerName.getFullName())
             .publishes(new BookingAddedToCustomerHistoryEvent(bookingNumber, passengerName))
             .expectActiveSagas(0);
 
@@ -57,11 +56,11 @@ public class BookingManagerSagaTest {
 
   @Test
   public void testPassengerAddedToFlight() throws Exception {
-    fixture.givenAggregate(bookingNumber.identifier()).published(new BookingCreatedEvent
+    fixture.givenAggregate(bookingNumber.getIdentifier()).published(new BookingCreatedEvent
             (bookingNumber, flightNumber, passengerName))
-            .andThenAggregate(passengerName.fullname()).published(new
+            .andThenAggregate(passengerName.getFullName()).published(new
             BookingAddedToCustomerHistoryEvent(bookingNumber, passengerName)).whenAggregate
-            (flightNumber.identifier()).publishes(new PassengerAddedToFlightEvent(bookingNumber,
+            (flightNumber.getIdentifier()).publishes(new PassengerAddedToFlightEvent(bookingNumber,
             flightNumber, passengerName)).expectDispatchedCommands(new
             MarkBookingConfirmedCommand(bookingNumber, flightNumber, passengerName));
   }
