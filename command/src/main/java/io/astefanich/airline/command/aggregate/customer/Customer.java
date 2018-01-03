@@ -6,7 +6,6 @@ import io.astefanich.airline.common.domain.PassengerName;
 import io.astefanich.airline.common.events.BookingAddedToCustomerHistoryEvent;
 import io.astefanich.airline.common.events.CustomerRegisteredEvent;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -17,7 +16,6 @@ import java.util.List;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Aggregate
-@Slf4j
 @NoArgsConstructor
 public class Customer {
 

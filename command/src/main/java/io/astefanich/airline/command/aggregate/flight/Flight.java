@@ -8,7 +8,6 @@ import io.astefanich.airline.common.events.FlightAddedToFlightScheduleEvent;
 import io.astefanich.airline.common.events.PassengerAddedToFlightEvent;
 import io.astefanich.airline.common.events.PassengerFlightAssignmentFailedEvent;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -19,7 +18,6 @@ import java.util.List;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Aggregate
-@Slf4j
 @NoArgsConstructor
 public class Flight {
 
@@ -37,7 +35,7 @@ public class Flight {
   }
 
   void addPassengerToManifest(BookingNumber bookingNumber, PassengerName passenger) {
-    if(capacity > 0) {
+    if (capacity > 0) {
       apply(new PassengerAddedToFlightEvent(bookingNumber, flightNumber, passenger));
     } else {
       apply(new PassengerFlightAssignmentFailedEvent(bookingNumber, flightNumber, passenger));

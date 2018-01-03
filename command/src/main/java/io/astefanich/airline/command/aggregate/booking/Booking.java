@@ -8,17 +8,13 @@ import io.astefanich.airline.common.events.BookingConfirmedEvent;
 import io.astefanich.airline.common.events.BookingCreatedEvent;
 import io.astefanich.airline.common.events.BookingRejectedEvent;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 
-import java.util.Date;
-
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Aggregate
-@Slf4j
 @NoArgsConstructor
 public class Booking {
 
