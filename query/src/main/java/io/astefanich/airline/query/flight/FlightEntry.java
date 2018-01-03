@@ -15,7 +15,7 @@ public class FlightEntry {
 
   @Id
   @GeneratedValue
-  private long id;
+  private Long id;
 
   private String flightNumber;
 

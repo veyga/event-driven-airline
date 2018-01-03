@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FlightEntryRepository extends JpaRepository<FlightEntry, String> {
+public interface FlightEntryRepository extends JpaRepository<FlightEntry, Long> {
 
   List<FlightEntry> findByOriginAndDestinationAndFlightDate(String origin, String destination, String flightDate);
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookingRecordRepository extends JpaRepository<BookingRecord, String> {
+public interface BookingRecordRepository extends JpaRepository<BookingRecord, Long> {
 
   BookingRecord findByBookingNumber(String bookingNumber);
 

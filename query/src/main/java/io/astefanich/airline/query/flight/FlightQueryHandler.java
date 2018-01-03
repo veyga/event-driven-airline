@@ -21,7 +21,6 @@ public class FlightQueryHandler {
 
   @QueryHandler
   public FlightSchedule handle(QueryFlightScheduleForFlightCandidates query) {
-    log.info("fligth query handler: handling QueryFlightForFlightCandaiates");
     List<FlightEntry> flightEntries = repository.findByOriginAndDestination(query.getOrigin(), query.getDestination());
     return new FlightSchedule(flightEntries.stream().filter(inventoryCheck).collect(Collectors.toList()));
   }

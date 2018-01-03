@@ -13,7 +13,7 @@ public class BookingRecord {
 
   @Id
   @GeneratedValue
-  private long id;
+  private Long id;
 
   private String bookingNumber;
 
