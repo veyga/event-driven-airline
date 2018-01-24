@@ -1,4 +1,4 @@
-package io.astefanich.airline.query.config;
+package io.astefanich.airline.query;
 
 import io.astefanich.airline.common.domain.Schedule;
 import io.astefanich.airline.common.events.*;
