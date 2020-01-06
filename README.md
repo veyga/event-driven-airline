@@ -1,5 +1,5 @@
 # event-driven-airline
-demonstrating CQRS, event sourcing, and the Axon framework with a simplified example
+demonstrating DDD, CQRS, event sourcing, and the Axon framework with a simplified example
 
 The concepts of DDD (Domain Driven Design), CQRS (Command Query Responsibility Segregation), and Event Sourcing are quite deep.
 The following [LINK](https://www.kenneth-truyers.net/2013/12/05/introduction-to-domain-driven-design-cqrs-and-event-sourcing/), should help to explain.
